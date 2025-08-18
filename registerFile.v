@@ -52,11 +52,12 @@ module registerFile(
     always @(posedge clk or posedge reset) begin
         
         if(reset) begin
-            for(k=0; k<32; k=k+1) begin
-                registers[k] <= 32'b00;
-            end
+            registers[0] <= 32'b0;
+            //for(k=0; k<32; k=k+1) begin
+                //registers[k] <= 32'b00;
+            //end
         end
-        else if(reg_write) begin
+        else if(reg_write && rd !=0 ) begin
             registers[rd] <= write_data;
         end
     end

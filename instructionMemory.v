@@ -2,10 +2,12 @@ module instructionMemory(
     input      [31:0] read_addr,
     input clk,
     input reset,
-    output reg [31:0] instruction_out
+    output [31:0] instruction_out
 );
     reg [31:0] i_mem[63:0];
     integer i;
+
+    assign instruction_out = i_mem[read_addr >> 2];
 
     always@(posedge clk or posedge reset) begin
 

@@ -29,12 +29,4 @@ module riscVTop_tb();
                  uut.addr_top, uut.mem_data_top, uut.write_back_top);
     end
 
-    // Optional: stop monitoring or freeze PC if it goes beyond initialized memory
-    always @(posedge clk) begin
-        if(uut.pc_top >= 12*4) begin  // assuming instructions 0-11 are valid
-            $display("Reached end of initialized instructions at PC=%h. Simulation can stop here.", uut.pc_top);
-            $finish;
-        end
-    end
-
 endmodule
