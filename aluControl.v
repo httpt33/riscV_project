@@ -6,13 +6,13 @@ module aluControl(
 );
 
     always@(*) begin
-        case({alu_op, funct7, funct3})
-        6'b00_0_000:
-        control_out <= 4'b0010;
-        6'b01_0_000:
-        control_out <= 4'b0110;
-        6'b10_0_000:
-        control_out <= 4'b0010;
+        casez({alu_op, funct7, funct3})
+        6'b00_?_???:
+        control_out <= 4'b0010; // load/store: always ADD
+        6'b01_?_???:
+        control_out <= 4'b0110; // branch: always SUB
+        6'b10_0_000: 
+        control_out <= 4'b0010; 
         6'b10_1_000:
         control_out <= 4'b0110;
         6'b10_0_111:

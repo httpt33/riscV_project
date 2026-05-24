@@ -17,16 +17,22 @@ module riscVTop_tb();
 
     // Stimulus
     initial begin
+        $dumpfile("waveform.vcd");
+        $dumpvars(0, riscVTop_tb);
         reset = 1;
-        #10 reset = 0;  // release reset after 10 ns
-        #400 $finish;   // run simulation
+        #10 reset = 0;
+        #130 $finish;  // just enough for 12 instructions
     end
 
     // Monitor only valid instruction addresses
-    initial begin
-        $monitor("T=%0t | PC=%h | Instr=%h | RegWrite=%b | ALUres=%h | MemData=%h | WB=%h", 
-                 $time, uut.pc_top, uut.instruction_top, uut.reg_write_top, 
-                 uut.addr_top, uut.mem_data_top, uut.write_back_top);
+    always @(negedge clk) begin
+    $display("T=%0t | PC=%h | Instr=%h | x5=%h | rd1=%h | rd2=%h | imm=%h | ALUres=%h",
+             $time, uut.pc_top, uut.instruction_top,
+             uut.registerFile_inst.registers[5],
+             uut.rd1_top,
+             uut.rd2_top,
+             uut.immediate_ext_top,
+             uut.addr_top);
     end
 
 endmodule

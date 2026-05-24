@@ -12,6 +12,8 @@ module immediateGen(
             immediate_ext <= {{20{instruction[31]}}, instruction[31:25], instruction[11:7]};
             7'b1100011: //branch
             immediate_ext <= {{19{instruction[31]}}, instruction[30:25], instruction[11:8], 1'b0};
+            7'b0010011:
+            immediate_ext <= {{20{instruction[31]}}, instruction[31:20]};
             default: 
             immediate_ext <= 32'b0;
         endcase

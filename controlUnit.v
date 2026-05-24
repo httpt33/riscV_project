@@ -12,14 +12,16 @@ module controlUnit(
 always @(*) begin
 
     case(instruction)
-    7'b0110011: 
+    7'b0110011: // R type
     {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b00100010;
-    7'b0000011:
+    7'b0000011: // Load
     {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b11110000;
-    7'b0100011:
+    7'b0100011: // Store
     {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b10001000;
-    7'b1100011:
+    7'b1100011: // Branch
     {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b00000101;
+    7'b0010011:
+    {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b10100010;
     default:
     {alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op} = 8'b00000000;
     endcase
