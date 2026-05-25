@@ -50,14 +50,41 @@ module registerFile(
     
     integer k;
     always @(posedge clk or posedge reset) begin
-        
         if(reset) begin
-            registers[0] <= 32'b0;
-            //for(k=0; k<32; k=k+1) begin
-                //registers[k] <= 32'b00;
-            //end
+            registers[0]  <= 32'd0;
+            registers[1]  <= 32'd3;
+            registers[2]  <= 32'd2;
+            registers[3]  <= 32'd12;
+            registers[4]  <= 32'd20;
+            registers[5]  <= 32'd3;
+            registers[6]  <= 32'd44;
+            registers[7]  <= 32'd4;
+            registers[8]  <= 32'd2;
+            registers[9]  <= 32'd1;
+            registers[10] <= 32'd23;
+            registers[11] <= 32'd4;
+            registers[12] <= 32'd90;
+            registers[13] <= 32'd10;
+            registers[14] <= 32'd20;
+            registers[15] <= 32'd30;
+            registers[16] <= 32'd40;
+            registers[17] <= 32'd50;
+            registers[18] <= 32'd60;
+            registers[19] <= 32'd70;
+            registers[20] <= 32'd80;
+            registers[21] <= 32'd80;
+            registers[22] <= 32'd90;
+            registers[23] <= 32'd70;
+            registers[24] <= 32'd60;
+            registers[25] <= 32'd65;
+            registers[26] <= 32'd4;
+            registers[27] <= 32'd32;
+            registers[28] <= 32'd12;
+            registers[29] <= 32'd34;
+            registers[30] <= 32'd5;
+            registers[31] <= 32'd10;
         end
-        else if(reg_write && rd !=0 ) begin
+        else if(reg_write && rd != 0) begin
             registers[rd] <= write_data;
         end
     end

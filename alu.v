@@ -28,8 +28,10 @@ module alu(
                 zero <= 0;
             alu_result <= a - b;    
         end
-        default: 
-        alu_result = 32'b0;
+        default: begin
+            alu_result <= 32'b0;
+            zero <= 1'b0;
+        end
         endcase
     end
 
