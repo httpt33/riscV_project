@@ -1,6 +1,7 @@
 module riscVTop(
     input clk,
-    input reset
+    input reset,
+    output [31:0] debug_out  // for debugging on vivado
 );
 
 wire [31:0] pc_top, instruction_top, rd1_top, rd2_top, immediate_ext_top, mux1_top, sum_out_top, next_pc_top, pc_in_top, addr_top, mem_data_top, write_back_top;
@@ -50,4 +51,7 @@ dataMemory dataMemory_inst (.clk(clk), .reset(reset), .mem_write(mem_write_top),
 
 //mux 3
 mux3 data_memory_mux (.sel3(mem_to_reg_top), .a3(addr_top), .b3(mem_data_top), .mux3_out(write_back_top));
+
+assign debug_out = write_back_top;
+
 endmodule
